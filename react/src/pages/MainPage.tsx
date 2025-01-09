@@ -1,4 +1,7 @@
-
-
 export const MainPage = () => {
-    <div className="kljfkjldfs"></div>
+    return (
+      <div className="h-screen w-screen bg-black">
+      </div>
+    );
+  };
+  
