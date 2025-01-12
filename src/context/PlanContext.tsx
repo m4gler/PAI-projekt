@@ -2,12 +2,12 @@ import { createContext, useContext, useState, PropsWithChildren, Children} from 
 
 type PlanContextType = {
     selectedPlan: string | null;
-    setSelectedPland: (plan: string) => void
+    setSelectedPlan: (plan: string) => void
 } 
 
 const PlanContext = createContext<PlanContextType | undefined>(undefined)
 
-export const PlanProvider = ({Children}) => {
+export const PlanProvider = ({Children}: PropsWithChildren) => {
     const [selectedPlan, setSelectedPlan] = useState<string |null>(null)
 
     return (
@@ -16,3 +16,10 @@ export const PlanProvider = ({Children}) => {
         </PlanContext.Provider>
     );
 };
+
+export const usePlan = (): PlanContextType => {
+    const context = useContext(PlanContext);
+    if (!context) {
+        throw new Error("Uzyj plan provider")
+    }
+}
