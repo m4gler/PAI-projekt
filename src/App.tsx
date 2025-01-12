@@ -1,12 +1,14 @@
 
 import './index.css';
 import { MainPage } from './pages/MainPage';
+import { PaymentSystem } from './pages/PaymentSystem';
+import { PlanProvider } from './context/PlanContext';
 
 function App() {
   return (
-    <div className="h-screen w-screen">
+    <PlanProvider>
       <MainPage />
-    </div>
+    </PlanProvider>
   );
 }
 
