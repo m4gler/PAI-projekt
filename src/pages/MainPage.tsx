@@ -1,13 +1,12 @@
 import { usePlan } from "../context/PlanContext";
 
 export const MainPage = () => {
-const {setSelectedPlan} = usePlan();
+  const { setSelectedPlan } = usePlan();
 
-
-const handlePlan = (plan:string) => {
-  setSelectedPlan(plan);
-  console.log("plan: ", plan)
-}
+  const handlePlan = (plan: string) => {
+    setSelectedPlan(plan);
+    console.log("plan: ", plan);
+  };
 
   return (
     <div className="h-screen w-screen bg-gray-100 flex flex-col">
@@ -34,8 +33,12 @@ const handlePlan = (plan:string) => {
         </nav>
 
         <div className="flex items-center space-x-4">
-          <button className="text-white text-2xl hover:text-gray-400">Mój klub</button>
-          <button className="text-white text-2xl hover:text-gray-400">Zaloguj się</button>
+          <button className="text-white text-2xl hover:text-gray-400">
+            Mój klub
+          </button>
+          <button className="text-white text-2xl hover:text-gray-400">
+            Zaloguj się
+          </button>
           <button className="bg-yellow-400 text-black font-bold py-3 px-6 rounded hover:bg-yellow-500">
             Kup karnet
           </button>
@@ -72,7 +75,10 @@ const handlePlan = (plan:string) => {
               Dostęp do wszystkich zajęć i strefy cardio
             </p>
             <p className="text-3xl font-bold text-black mb-6">99,99 zł</p>
-            <button onClick={() => handlePlan("Miesięczny - 99,99 zł")} className="bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600">
+            <button
+              onClick={() => handlePlan("Miesięczny - 99,99 zł")}
+              className="bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600"
+            >
               Wybierz
             </button>
           </div>
@@ -85,7 +91,10 @@ const handlePlan = (plan:string) => {
               Bezpłatny trening personalny w pakiecie
             </p>
             <p className="text-3xl font-bold text-black mb-6">249,99 zł</p>
-            <button onClick={() => handlePlan("3-Miesieczny - 249,99 zł")}  className="bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600">
+            <button
+              onClick={() => handlePlan("3-Miesieczny - 249,99 zł")}
+              className="bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600"
+            >
               Wybierz
             </button>
           </div>
@@ -98,7 +107,10 @@ const handlePlan = (plan:string) => {
               Dostęp do sauny i darmowe konsultacje
             </p>
             <p className="text-3xl font-bold text-black mb-6">899,99 zł</p>
-            <button onClick={() => handlePlan("Roczny - 899,99 zł")} className="bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600">
+            <button
+              onClick={() => handlePlan("Roczny - 899,99 zł")}
+              className="bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600"
+            >
               Wybierz
             </button>
           </div>

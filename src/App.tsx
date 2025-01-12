@@ -1,4 +1,3 @@
-
 import './index.css';
 import { MainPage } from './pages/MainPage';
 import { PaymentSystem } from './pages/PaymentSystem';
