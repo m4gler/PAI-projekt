@@ -3,11 +3,8 @@ import { usePlan } from "../context/PlanContext";
 
 
 export const PaymentSystem = () => {
-    // @ts-ignore
     const {selectedPlan, setSelectedPlan} = usePlan();
-    // @ts-ignore
     const [paymentStatus, setPaymentStatus] = useState<string>("")
-    // @ts-ignore
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
 
