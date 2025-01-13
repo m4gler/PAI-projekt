@@ -1,4 +1,5 @@
 import { usePlan } from "../context/PlanContext";
+// @ts-ignore
 import { Navigate, useNavigate } from "react-router-dom";
 
 export const MainPage = () => {
