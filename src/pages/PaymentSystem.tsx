@@ -1,14 +1,24 @@
 import { useState } from "react"
 import { usePlan } from "../context/PlanContext";
+import { useNavigate } from "react-router-dom";
 
 
 export const PaymentSystem = () => {
+    const navigate = useNavigate()
     // @ts-ignore
     const {selectedPlan, setSelectedPlan} = usePlan();
     // @ts-ignore
     const [paymentStatus, setPaymentStatus] = useState<string>("")
     // @ts-ignore
     const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const goBack = () => {
+      navigate("/", )
+    }
+
+    if(!selectedPlan) {
+      alert("Wybierz plan");
+    }
 
 
     return (
@@ -27,7 +37,7 @@ export const PaymentSystem = () => {
               </button>
               <button
                 className="bg-red-500 text-white py-3 px-8 rounded-lg font-bold hover:bg-red-600"
-                onClick={() => setSelectedPlan(null)}
+                onClick={() => goBack()}
               >
                 Anuluj
               </button>

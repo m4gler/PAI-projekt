@@ -14,7 +14,6 @@ export const MainPage = () => {
 
   return (
     <div className="h-screen w-screen bg-gray-100 flex flex-col">
-      {/* Pasek nawigacji */}
       <div className="h-24 bg-black flex items-center justify-between px-10">
         <div className="text-white text-4xl font-bold">
           Sił<span className="text-yellow-400">KA</span>
@@ -46,7 +45,6 @@ export const MainPage = () => {
         </div>
       </div>
 
-      {/* Hero Sekcja */}
       <div className="relative flex flex-col justify-center items-center h-[80vh] bg-blue-900 text-white text-center">
         <h1 className="text-6xl font-extrabold mb-6 leading-snug max-w-4xl">
           Rozpocznij swoją drogę do zdrowia i siły z nami!
@@ -59,7 +57,6 @@ export const MainPage = () => {
         </button>
       </div>
 
-      {/* Sekcja "Wybierz swój karnet" */}
       <div className="bg-gradient-to-r from-blue-700 to-blue-600 py-10">
         <h2 className="text-5xl font-bold text-center text-black mb-10">Wybierz swój karnet</h2>
         <div className="flex justify-center space-x-8">
@@ -101,7 +98,6 @@ export const MainPage = () => {
         </div>
       </div>
 
-      {/* Dlaczego warto nas wybrać */}
       <div className="py-10 bg-gray-200">
         <h2 className="text-4xl font-bold text-center text-black mb-10">Dlaczego warto nas wybrać?</h2>
         <div className="flex justify-center space-x-10">
