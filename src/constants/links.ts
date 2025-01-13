@@ -3,4 +3,6 @@ export const Links = {
     LOGIN: "login",
     REGISTER: "register",
     PAYMENT: "payment",
+    HOMEAFTER: "home",
+    ADDWORKOUT: "/add-workout",
 }

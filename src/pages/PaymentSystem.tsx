@@ -13,7 +13,7 @@ export const PaymentSystem = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const goBack = () => {
-      navigate("/", )
+      navigate("/")
     }
 
     if(!selectedPlan) {
