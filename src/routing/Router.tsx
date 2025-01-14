@@ -5,6 +5,7 @@ import RegisterPage from "../pages/RegisterPage";
 import { PaymentSystem } from "../pages/PaymentSystem";
 import { HomeAfterLog } from "../pages/HomeAfterLog";
 import { AddWorkout } from "../pages/AddWorkout";
+import { ShowTraining } from "../pages/ShowTrainings";
 
 export const router = createBrowserRouter([
   {
@@ -27,4 +28,9 @@ export const router = createBrowserRouter([
     path: Links.ADDWORKOUT,
     element: <AddWorkout />
   },
+  
+  {
+    path: Links.SHOWWORKOUT,
+    element: <ShowTraining />
+  }
 ]);

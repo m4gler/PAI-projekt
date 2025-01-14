@@ -4,5 +4,6 @@ export const Links = {
     REGISTER: "register",
     PAYMENT: "payment",
     HOMEAFTER: "home",
-    ADDWORKOUT: "/add-workout",
+    ADDWORKOUT: "add-workout",
+    SHOWWORKOUT: "show-workout"
 }

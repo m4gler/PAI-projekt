@@ -1,8 +1,15 @@
 import { createContext, useContext, useState, PropsWithChildren } from "react";
 
+type Workout = {
+  name: string;
+  description: string;
+  typeOfTraining: string;
+  duration: string;
+};
+
 type WorkoutContextType = {
-  TrainingPlan: string | null;
-  setTrainingPlan: (TrainPlan: string) => void;
+  trainingPlans: Workout[]; 
+  addTrainingPlan: (newPlan: Workout) => void; 
 };
 
 export const TrainingContext = createContext<WorkoutContextType | undefined>(
@@ -10,10 +17,14 @@ export const TrainingContext = createContext<WorkoutContextType | undefined>(
 );
 
 export const TrainingProvider = ({ children }: PropsWithChildren) => {
-  const [TrainingPlan, setTrainingPlan] = useState<string | null>(null);
+  const [trainingPlans, setTrainingPlans] = useState<Workout[]>([]);
+
+  const addTrainingPlan = (newPlan: Workout) => {
+    setTrainingPlans((prevPlans) => [...prevPlans, newPlan]); 
+  };
 
   return (
-    <TrainingContext.Provider value={{ TrainingPlan, setTrainingPlan }}>
+    <TrainingContext.Provider value={{ trainingPlans, addTrainingPlan }}>
       {children}
     </TrainingContext.Provider>
   );
