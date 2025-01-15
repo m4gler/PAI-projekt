@@ -15,6 +15,10 @@ export const PaymentSystem = () => {
     navigate("/");
   };
 
+  // const goAhead - () => {
+
+  // }
+
   if (!selectedPlan) {
     alert("Wybierz plan");
   }
