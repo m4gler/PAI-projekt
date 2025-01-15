@@ -1,4 +1,4 @@
-import { useForm, type SubmpitHandler } from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 
 type FormValues = {
   firstName: string;
@@ -10,7 +10,7 @@ type FormValues = {
 
 export const Register = () => {
   const { register, handleSubmit } = useForm<FormValues>();
-
+// @ts-ignore
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(data);
   };
