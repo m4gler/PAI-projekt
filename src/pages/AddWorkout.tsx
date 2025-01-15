@@ -16,7 +16,6 @@ export const AddWorkout = () => {
 
   const onSubmit = (data: Workout) => {
     addTrainingPlan(data);
-    console.log("Dodano nowy plan: ", data);
   };
 
   return (
