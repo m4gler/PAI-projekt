@@ -20,7 +20,7 @@ app.get("/api/workouts", (req, res) => {
   });
 });
 
-app.post("/api/workouts/add", (req, res) => {
+app.post("/api/workouts", (req, res) => {
     const newWorkout = req.body;
 
     fs.readFile(WORKOUTS, "utf-8", (err, data) => {
@@ -39,6 +39,17 @@ app.post("/api/workouts/add", (req, res) => {
         })
     })
 })
+
+// app.delete("/api/workouts", (req, res) => {
+//   const id = parseInt(req.params.id);
+//   fs.readFile(WORKOUTS, "utf-8", (err, data) => {
+//     if(err) {
+//       return res.status(500).json({message: "Błąd odczytu"})
+//     }
+//     let workouts = JSON.parse(data)
+//     workouts.splice()
+//   })
+// })
 
 app.listen(PORT, () => {
     console.log("serwr dziala")
