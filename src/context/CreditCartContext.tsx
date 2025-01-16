@@ -10,17 +10,16 @@ type CreditCard = {
 };
 
 type CreditCartContextType = {
-  Card: CreditCart;
-};
+  Card: CreditCard;
 
-
+}
 export const CreditCardContext = createContext<CreditCartContextType | undefined>(undefined)
 
 export const CreditCardProvider = ({children}: PropsWithChildren) => {
     const [CreditCard, setCredidCart ] = useState<string | null>(null)
 
     return (
-        <CreditCardContext.Provider value={CreditCard, setCredidCart}>
+        <CreditCardContext.Provider value={{CreditCard, setCredidCart}}>
             {children}
         </CreditCardContext.Provider>
     )

@@ -34,8 +34,6 @@ export const PaymentSystem = () => {
         <h1 className="text-3xl font-bold text-gray-800 text-center mb-6">
           Wypełnij dane płatności
         </h1>
-
-        {/* Animowana karta */}
         <div className="relative w-full h-40 mb-8">
           <div className="absolute w-full h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg shadow-lg transform transition-transform duration-300 hover:rotate-3">
             <div className="p-4 text-white flex flex-col justify-between h-full">
