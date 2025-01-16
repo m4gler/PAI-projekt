@@ -44,5 +44,5 @@ app.post("/api/workouts", (req, res) => {
 })
 
 app.listen(PORT, () => {
-    console.log("serwr dziala")
+    console.log("http://localhost:5000/api/workouts")
 })
