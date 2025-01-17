@@ -6,7 +6,7 @@ import { PaymentSystem } from "../pages/PaymentSystem";
 import { HomeAfterLog } from "../pages/HomeAfterLog";
 import { AddWorkout } from "../pages/AddWorkout";
 import { ShowTraining } from "../pages/ShowTrainings";
-
+import ManageTrainingPage from "../pages/ManageTrainingPage";
 export const router = createBrowserRouter([
   {
     path: Links.HOMEPAGE,
@@ -32,5 +32,9 @@ export const router = createBrowserRouter([
   {
     path: Links.SHOWWORKOUT,
     element: <ShowTraining />
-  }
+  },
+  {
+    path: Links.MANAGETRAININGS,
+    element: <ManageTrainingPage />
+  },
 ]);

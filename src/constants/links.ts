@@ -5,5 +5,6 @@ export const Links = {
     PAYMENT: "payment",
     HOMEAFTER: "home",
     ADDWORKOUT: "add-workout",
-    SHOWWORKOUT: "show-workout"
+    SHOWWORKOUT: "show-workout",
+    MANAGETRAININGS: "manage-trainings"
 }
