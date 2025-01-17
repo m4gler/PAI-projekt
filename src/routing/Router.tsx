@@ -6,6 +6,7 @@ import { PaymentSystem } from "../pages/PaymentSystem";
 import { HomeAfterLog } from "../pages/HomeAfterLog";
 import { AddWorkout } from "../pages/AddWorkout";
 import { ShowTraining } from "../pages/ShowTrainings";
+import GoalsPage from "../pages/GoalsPage"
 
 export const router = createBrowserRouter([
   {
@@ -32,5 +33,9 @@ export const router = createBrowserRouter([
   {
     path: Links.SHOWWORKOUT,
     element: <ShowTraining />
+  },
+  {
+    path: Links.GOALS,
+    element: <GoalsPage />
   }
 ]);
