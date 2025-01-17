@@ -34,7 +34,7 @@ export const useTrain = (): WorkoutContextType => {
   const context = useContext(TrainingContext);
 
   if (!context) {
-    throw new Error("useTrain must be used within a TrainingProvider");
+    throw new Error("ss");
   }
 
   return context;

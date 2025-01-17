@@ -10,16 +10,20 @@ type CreditCard = {
 };
 
 type CreditCartContextType = {
-  Card: CreditCard;
-
+    cards: CreditCard[];
+    addCreditCard: (newCredit: CreditCard) => void
 }
 export const CreditCardContext = createContext<CreditCartContextType | undefined>(undefined)
 
 export const CreditCardProvider = ({children}: PropsWithChildren) => {
-    const [CreditCard, setCredidCart ] = useState<string | null>(null)
+    const [cards, setCreditCart ] = useState<CreditCard[]>([])
+
+    const addCreditCard = (newCredit: CreditCard) => {
+        setCreditCart((prevCards) => [...prevCards, newCredit])
+    }
 
     return (
-        <CreditCardContext.Provider value={{CreditCard, setCredidCart}}>
+        <CreditCardContext.Provider value={{cards, addCreditCard}}>
             {children}
         </CreditCardContext.Provider>
     )

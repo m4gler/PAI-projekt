@@ -32,5 +32,5 @@ export const router = createBrowserRouter([
   {
     path: Links.SHOWWORKOUT,
     element: <ShowTraining />
-  }
+  },
 ]);

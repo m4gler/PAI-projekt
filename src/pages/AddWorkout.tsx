@@ -55,7 +55,6 @@ export const AddWorkout = () => {
           <div className="mb-6">
             <input
               {...register("name")}
-              type="text"
               placeholder="Nazwa Treningu"
               className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -72,7 +71,6 @@ export const AddWorkout = () => {
           <div className="mb-6">
             <input
               {...register("typeOfTraining")}
-              type="text"
               placeholder="Typ Treningu (Np. Siłowy, Cardio)"
               className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -89,7 +87,7 @@ export const AddWorkout = () => {
 
           <div className="flex justify-between">
             <button
-              type="button"
+            type="button"
               className="bg-gray-400 text-white py-3 px-6 rounded-lg font-bold hover:bg-gray-500"
               onClick={() => navigate("/home")}
             >
