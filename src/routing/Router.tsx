@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Links } from "../constants/links";
 import { MainPage } from "../pages/MainPage";
-import RegisterPage from "../pages/RegisterPage";
+import { RegisterPage } from "../pages/RegisterPage";
 import { PaymentSystem } from "../pages/PaymentSystem";
 import { HomeAfterLog } from "../pages/HomeAfterLog";
 import { AddWorkout } from "../pages/AddWorkout";
@@ -14,7 +14,7 @@ export const router = createBrowserRouter([
   },
   {
     path: Links.REGISTER,
-    element: <RegisterPage />,
+    element: <RegisterPage/>
   },
   {
   path: Links.PAYMENT,

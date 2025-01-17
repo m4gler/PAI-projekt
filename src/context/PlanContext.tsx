@@ -24,3 +24,4 @@ export const usePlan = (): PlanContextType => {
     }
     return context;
 }
+
