@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContex";
 
 type User = {
-  firtstName: string;
+  firstName: string;
   lastName: string;
   email: string;
   password: string;
@@ -10,10 +10,15 @@ type User = {
 
 export const RegisterPage = () => {
   const { register, handleSubmit } = useForm<User>();
-  const navigate = useNavigate();
+  const { addUser } = useUser(); // użycie funkcji z kontekstu
 
-  const onSubmit = (data: User) => {
-    console.log(data);
+  const onSubmit = async (data: User) => {
+    try {
+      await addUser(data); 
+      alert("Rejestracja zakończona sukcesem!");
+    } catch (error) {
+      alert("Błąd podczas rejestracji.");
+    }
   };
 
   return (
@@ -40,7 +45,7 @@ export const RegisterPage = () => {
           </h2>
 
           <input
-            {...register("firtstName")}
+            {...register("firstName")}
             type="text"
             placeholder="Imię"
             className="w-full px-6 py-4 border border-gray-300 rounded-full focus:outline-none focus:ring-4 focus:ring-blue-500 shadow-lg"
