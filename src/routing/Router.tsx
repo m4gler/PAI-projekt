@@ -7,6 +7,7 @@ import { HomeAfterLog } from "../pages/HomeAfterLog";
 import { AddWorkout } from "../pages/AddWorkout";
 import { ShowTraining } from "../pages/ShowTrainings";
 import ManageTrainingPage from "../pages/ManageTrainingPage";
+import { LoginPage } from "../pages/LoginPage";
 export const router = createBrowserRouter([
   {
     path: Links.HOMEPAGE,
@@ -37,4 +38,8 @@ export const router = createBrowserRouter([
     path: Links.MANAGETRAININGS,
     element: <ManageTrainingPage />
   },
+  {
+    path: Links.LOGIN,
+    element: <LoginPage />
+  }
 ]);
