@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useTrain } from "../context/WorkoutContext";
+import { db } from "../firebaseConfig"; // Import Firebase DB
+import { collection, addDoc } from "firebase/firestore";
 
 type Workout = {
   name: string;
@@ -11,11 +13,47 @@ type Workout = {
 
 export const AddWorkout = () => {
   const navigate = useNavigate();
-  const { addTrainingPlan } = useTrain();
+  const { addTrainingPlan } = useTrain(); 
   const { register, handleSubmit } = useForm<Workout>();
 
-  const onSubmit = (data: Workout) => {
-    addTrainingPlan(data);
+  const sendToAPI = async (workout: Workout) => {
+    try {
+      const response = await fetch("http://localhost:5000/api/workouts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(workout),
+      });
+      if (!response.ok) {
+        throw new Error("Błąd podczas wysyłania do API");
+      }
+      console.log("Dodano do API:", workout);
+    } catch (error) {
+      console.error("Błąd podczas wysyłania do API:", error);
+    }
+  };
+
+  const sendToFirebase = async (workout: Workout) => {
+    try {
+      const workoutsCollection = collection(db, "workouts");
+      await addDoc(workoutsCollection, workout);
+      console.log("Dodano do Firebase:", workout);
+    } catch (error) {
+      console.error("Błąd podczas wysyłania do Firebase:", error);
+    }
+  };
+
+  const onSubmit = async (data: Workout) => {
+    try {
+      addTrainingPlan(data); 
+      await sendToAPI(data); 
+      await sendToFirebase(data); 
+      alert("Trening został dodany!");
+    } catch (error) {
+      console.error("Błąd podczas dodawania treningu:", error);
+      alert("Wystąpił błąd podczas dodawania treningu.");
+    }
   };
 
   return (
@@ -87,7 +125,7 @@ export const AddWorkout = () => {
 
           <div className="flex justify-between">
             <button
-            type="button"
+              type="button"
               className="bg-gray-400 text-white py-3 px-6 rounded-lg font-bold hover:bg-gray-500"
               onClick={() => navigate("/home")}
             >
