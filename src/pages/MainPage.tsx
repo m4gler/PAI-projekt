@@ -8,7 +8,7 @@ export const MainPage = () => {
 
   const handlePlan = (plan: string) => {
     setSelectedPlan(plan);
-    navigate("/payment", { state: { plan } });
+    navigate("/register", { state: { plan } });
   };
 
   return (

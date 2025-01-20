@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContex"; 
 
 export const HomeAfterLog = () => {
   const navigate = useNavigate();
+  const { currentUser } = useUser(); 
 
   return (
     <div className="h-screen w-screen bg-gradient-to-b from-blue-900 to-blue-800 flex flex-col">
@@ -10,8 +12,7 @@ export const HomeAfterLog = () => {
           Sił<span className="text-yellow-400">KA</span>
         </div>
         <button
-          className="hover:text-gray-300"
-          onClick={() => navigate("/user-panel")}
+          className="hover:text-gray-300 flex items-center gap-2"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -27,6 +28,11 @@ export const HomeAfterLog = () => {
               d="M15.75 9A3.75 3.75 0 1112 5.25 3.75 3.75 0 0115.75 9zM4.5 18.75a8.25 8.25 0 1115 0M4.5 18.75H4.49z"
             />
           </svg>
+          <span className="text-white text-lg">
+            {currentUser
+              ? `${currentUser.firstName} ${currentUser.lastName}`
+              : "Użytkownik"}
+          </span>
         </button>
       </header>
 

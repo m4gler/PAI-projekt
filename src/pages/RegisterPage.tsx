@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom"; 
 import { useUser } from "../context/UserContex";
 
 type User = {
@@ -10,14 +11,17 @@ type User = {
 
 export const RegisterPage = () => {
   const { register, handleSubmit } = useForm<User>();
-  const { addUser } = useUser(); // użycie funkcji z kontekstu
+  const { addUser, setCurrentUser } = useUser();
+  const navigate = useNavigate(); 
 
   const onSubmit = async (data: User) => {
     try {
       await addUser(data); 
+      setCurrentUser(data); 
       alert("Rejestracja zakończona sukcesem!");
+      navigate("/home");
     } catch (error) {
-      alert("Błąd podczas rejestracji.");
+      alert("Błąd podczas rejestracji. Spróbuj ponownie.");
     }
   };
 
@@ -45,28 +49,40 @@ export const RegisterPage = () => {
           </h2>
 
           <input
-            {...register("firstName")}
+            {...register("firstName", { required: "Imię jest wymagane" })}
             type="text"
             placeholder="Imię"
             className="w-full px-6 py-4 border border-gray-300 rounded-full focus:outline-none focus:ring-4 focus:ring-blue-500 shadow-lg"
           />
 
           <input
-            {...register("lastName")}
+            {...register("lastName", { required: "Nazwisko jest wymagane" })}
             type="text"
             placeholder="Nazwisko"
             className="w-full px-6 py-4 border border-gray-300 rounded-full focus:outline-none focus:ring-4 focus:ring-blue-500 shadow-lg"
           />
 
           <input
-            {...register("email")}
+            {...register("email", {
+              required: "E-mail jest wymagany",
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Niepoprawny format e-maila",
+              },
+            })}
             type="email"
             placeholder="E-mail"
             className="w-full px-6 py-4 border border-gray-300 rounded-full focus:outline-none focus:ring-4 focus:ring-blue-500 shadow-lg"
           />
 
           <input
-            {...register("password")}
+            {...register("password", {
+              required: "Hasło jest wymagane",
+              minLength: {
+                value: 6,
+                message: "Hasło musi mieć co najmniej 6 znaków",
+              },
+            })}
             type="password"
             placeholder="Hasło"
             className="w-full px-6 py-4 border border-gray-300 rounded-full focus:outline-none focus:ring-4 focus:ring-blue-500 shadow-lg"
