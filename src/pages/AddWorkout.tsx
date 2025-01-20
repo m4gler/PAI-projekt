@@ -55,8 +55,7 @@ export const AddWorkout = () => {
       await sendToFirebase(data); // Sending the workout to Firebase
       alert("Workout added successfully!"); // Notify the user of success
     } catch (error) {
-      console.error("Error while adding workout:", error);
-      alert("An error occurred while adding the workout."); // Notify the user of any errors
+      alert(error)
     }
   };
 

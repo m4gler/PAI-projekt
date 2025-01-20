@@ -26,7 +26,7 @@ export const Goals = () => {
       })) as Goal[];
       setGoals(fetchedGoals);
     } catch (error) {
-      console.error("Error fetching goals:", error);
+      alert("error")
     }
   };
 

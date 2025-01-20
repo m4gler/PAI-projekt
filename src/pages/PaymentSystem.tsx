@@ -20,8 +20,7 @@ export const PaymentSystem = () => {
 
   // Function to handle form submission
   const onSubmit = (data: PaymentFormInputs) => {
-    alert("Payment approved!"); // Notify the user that payment was successful
-    console.log("Payment data submitted:", data); // Log the submitted data for debugging
+    alert("Payment Succesful")
   };
 
   return (
