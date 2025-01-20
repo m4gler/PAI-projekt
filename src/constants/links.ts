@@ -7,4 +7,5 @@ export const Links = {
     ADDWORKOUT: "add-workout",
     SHOWWORKOUT: "show-workout",
     GOALS: "Goals",
+    SHOWGOALS: "show-goals",
 }

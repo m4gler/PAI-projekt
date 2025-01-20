@@ -7,6 +7,7 @@ import { HomeAfterLog } from "../pages/HomeAfterLog";
 import { AddWorkout } from "../pages/AddWorkout";
 import { ShowTraining } from "../pages/ShowTrainings";
 import { Goals } from "../pages/Goals";
+import { ShowGoals } from "../pages/ShowGoals";
 
 export const router = createBrowserRouter([
   {
@@ -37,5 +38,9 @@ export const router = createBrowserRouter([
   {
     path: Links.GOALS,
     element: <Goals />
+  },
+  {
+    path: Links.SHOWGOALS,
+    element: <ShowGoals />
   }
 ]);

@@ -38,7 +38,7 @@ export const TrainingProvider = ({ children }: PropsWithChildren) => {
       const plans = snapshot.docs.map((doc) => doc.data() as Workout);
       setTrainingPlans(plans);
     } catch (error) {
-      console.error("Błąd podczas pobierania danych:", error);
+      alert("error")
     }
   };
 

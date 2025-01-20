@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
+// Define the types for the payment form inputs
 type PaymentFormInputs = {
   firstName: string;
   lastName: string;
@@ -10,95 +11,155 @@ type PaymentFormInputs = {
 };
 
 export const PaymentSystem = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Hook for navigating between routes
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<PaymentFormInputs>(); // Hook for managing form data
 
-  const { register, handleSubmit } = useForm<PaymentFormInputs>();
-
+  // Function to handle form submission
   const onSubmit = (data: PaymentFormInputs) => {
-    console.log("Submitted Data:", data);
-    alert("Płatność zatwierdzona!");
+    alert("Payment approved!"); // Notify the user that payment was successful
+    console.log("Payment data submitted:", data); // Log the submitted data for debugging
   };
 
   return (
     <div className="flex flex-col items-center h-screen w-screen bg-gradient-to-r from-blue-800 to-blue-600">
+      {/* Header section */}
       <header className="h-16 w-full bg-gradient-to-r from-blue-950 to-blue-900 flex items-center justify-between px-10 shadow-md">
         <div className="text-white text-4xl font-bold">
-          Sił<span className="text-yellow-400">KA</span>
+          Gym<span className="text-yellow-400">Buddy</span>
         </div>
       </header>
 
+      {/* Payment form */}
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmit)} // Attach the form handler
         className="flex flex-col items-center justify-center h-auto w-11/12 max-w-lg bg-white rounded-xl shadow-2xl p-8 mt-10"
       >
         <h1 className="text-3xl font-bold text-gray-800 text-center mb-6">
-          Wypełnij dane płatności
+          Fill in Payment Details
         </h1>
-        <div className="relative w-full h-40 mb-8">
-          <div className="absolute w-full h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg shadow-lg transform transition-transform duration-300 hover:rotate-3">
-            <div className="p-4 text-white flex flex-col justify-between h-full">
-              <h2 className="text-lg font-semibold">Karta Płatnicza</h2>
-              <p className="text-lg tracking-wider font-bold">**** **** **** 3456</p>
-              <div className="flex justify-between text-sm font-medium">
-                <span>MM/RR</span>
-                <span>CVV</span>
-              </div>
+
+        {/* Form fields */}
+        <div className="w-full space-y-4 mb-6">
+          {/* First and last name fields */}
+          <div className="flex flex-col md:flex-row md:space-x-4">
+            <div className="w-full md:w-1/2">
+              <input
+                type="text"
+                placeholder="First Name"
+                {...register("firstName", { required: "First name is required" })}
+                className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-md ${
+                  errors.firstName ? "border-red-500" : ""
+                }`}
+              />
+              {errors.firstName && (
+                <span className="text-red-500 text-sm">
+                  {errors.firstName.message}
+                </span>
+              )}
+            </div>
+            <div className="w-full md:w-1/2">
+              <input
+                type="text"
+                placeholder="Last Name"
+                {...register("lastName", { required: "Last name is required" })}
+                className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-md ${
+                  errors.lastName ? "border-red-500" : ""
+                }`}
+              />
+              {errors.lastName && (
+                <span className="text-red-500 text-sm">
+                  {errors.lastName.message}
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Card number field */}
+          <div>
+            <input
+              type="text"
+              placeholder="Card Number (e.g., 1234 5678 9012 3456)"
+              {...register("cardNumber", {
+                required: "Card number is required",
+                pattern: {
+                  value: /^\d{4} \d{4} \d{4} \d{4}$/,
+                  message: "Invalid card number format",
+                },
+              })}
+              className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-md ${
+                errors.cardNumber ? "border-red-500" : ""
+              }`}
+            />
+            {errors.cardNumber && (
+              <span className="text-red-500 text-sm">
+                {errors.cardNumber.message}
+              </span>
+            )}
+          </div>
+
+          {/* Expiration date and CVV fields */}
+          <div className="flex flex-col md:flex-row md:space-x-4">
+            <div className="w-full md:w-1/2">
+              <input
+                type="text"
+                placeholder="Expiration Date (MM/YY)"
+                {...register("expirationDate", {
+                  required: "Expiration date is required",
+                  pattern: {
+                    value: /^(0[1-9]|1[0-2])\/\d{2}$/,
+                    message: "Invalid expiration date format (MM/YY)",
+                  },
+                })}
+                className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-md ${
+                  errors.expirationDate ? "border-red-500" : ""
+                }`}
+              />
+              {errors.expirationDate && (
+                <span className="text-red-500 text-sm">
+                  {errors.expirationDate.message}
+                </span>
+              )}
+            </div>
+            <div className="w-full md:w-1/2">
+              <input
+                type="text"
+                placeholder="CVV"
+                {...register("cvv", {
+                  required: "CVV is required",
+                  pattern: {
+                    value: /^\d{3}$/,
+                    message: "Invalid CVV format",
+                  },
+                })}
+                className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-md ${
+                  errors.cvv ? "border-red-500" : ""
+                }`}
+              />
+              {errors.cvv && (
+                <span className="text-red-500 text-sm">{errors.cvv.message}</span>
+              )}
             </div>
           </div>
         </div>
 
-        <div className="w-full space-y-4 mb-6">
-          <div className="flex flex-col md:flex-row md:space-x-4">
-            <input
-              type="text"
-              placeholder="Imię"
-              {...register("firstName")}
-              className="w-full md:w-1/2 px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-md mb-4 md:mb-0"
-            />
-            <input
-              type="text"
-              placeholder="Nazwisko"
-              {...register("lastName")}
-              className="w-full md:w-1/2 px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-md"
-            />
-          </div>
-
-          <input
-            type="text"
-            placeholder="Numer karty (np. 1234 5678 9012 3456)"
-            {...register("cardNumber")}
-            className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-md"
-          />
-
-          <div className="flex flex-col md:flex-row md:space-x-4">
-            <input
-              type="text"
-              placeholder="Data ważności (MM/RR)"
-              {...register("expirationDate")}
-              className="w-full md:w-1/2 px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-md mb-4 md:mb-0"
-            />
-            <input
-              type="text"
-              placeholder="CVV"
-              {...register("cvv")}
-              className="w-full md:w-1/2 px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-md"
-            />
-          </div>
-        </div>
-
+        {/* Action buttons */}
         <div className="flex space-x-4">
           <button
             type="submit"
             className="bg-indigo-500 text-white py-3 px-8 rounded-lg font-bold hover:bg-indigo-600 shadow-lg"
           >
-            Zatwierdź płatność
+            Confirm Payment
           </button>
           <button
             type="button"
             className="bg-red-500 text-white py-3 px-8 rounded-lg font-bold hover:bg-red-600 shadow-lg"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/home")} // Navigate back to the home page
           >
-            Anuluj
+            Cancel
           </button>
         </div>
       </form>
