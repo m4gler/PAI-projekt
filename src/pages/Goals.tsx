@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { collection, addDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
 type Goal = {
-  id?: string; // Optional ID for managing deletions
   title: string;
   description: string;
   deadline: string;
@@ -13,20 +11,14 @@ type Goal = {
 
 export const Goals = () => {
   const { register, handleSubmit, reset } = useForm<Goal>();
-  const [goals, setGoals] = useState<Goal[]>([]); // State to store goals
-  const navigate = useNavigate();
 
   // Function to fetch goals from Firebase
   const fetchGoals = async () => {
     try {
-      const querySnapshot = await getDocs(collection(db, "goals"));
-      const fetchedGoals = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      })) as Goal[];
-      setGoals(fetchedGoals);
+      await getDocs(collection(db, "goals"));
+      // Logic for fetching can be added here if needed
     } catch (error) {
-      alert("error")
+      alert("Error fetching goals.");
     }
   };
 
@@ -35,20 +27,9 @@ export const Goals = () => {
     try {
       const database = collection(db, "goals");
       await addDoc(database, data);
-      reset();
-      fetchGoals(); // Refresh the goal list
+      reset(); // Clear form inputs
     } catch (error) {
       alert("Error adding goal.");
-    }
-  };
-
-  // Function to delete a goal
-  const removeGoal = async (id: string) => {
-    try {
-      await deleteDoc(doc(db, "goals", id));
-      setGoals((prevGoals) => prevGoals.filter((goal) => goal.id !== id));
-    } catch (error) {
-      console.error("Error deleting goal:", error);
     }
   };
 
@@ -63,12 +44,6 @@ export const Goals = () => {
         <div className="text-white text-4xl font-bold">
           Gym<span className="text-yellow-400">Buddy</span>
         </div>
-        <button
-          onClick={() => navigate("/")}
-          className="text-white text-lg hover:text-yellow-400 transition duration-300"
-        >
-          Back
-        </button>
       </header>
 
       <div className="flex justify-center items-center flex-grow">
@@ -107,26 +82,6 @@ export const Goals = () => {
             Save Goal
           </button>
         </form>
-      </div>
-
-      {/* Display goals */}
-      <div className="flex flex-col items-center mt-8">
-        {goals.map((goal) => (
-          <div
-            key={goal.id}
-            className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mb-4"
-          >
-            <h1 className="text-2xl font-bold text-gray-800 mb-4">{goal.title}</h1>
-            <p className="text-gray-600">Description: {goal.description}</p>
-            <p className="text-gray-600">Deadline: {goal.deadline}</p>
-            <button
-              onClick={() => goal.id && removeGoal(goal.id)}
-              className="mt-4 bg-red-500 text-white py-2 px-4 rounded-lg font-bold hover:bg-red-600"
-            >
-              Delete
-            </button>
-          </div>
-        ))}
       </div>
 
       <footer className="h-16 bg-gradient-to-r from-blue-950 to-blue-900 flex items-center justify-center">
