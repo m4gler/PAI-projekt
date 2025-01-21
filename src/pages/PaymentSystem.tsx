@@ -21,6 +21,7 @@ export const PaymentSystem = () => {
   // Function to handle form submission
   const onSubmit = (data: PaymentFormInputs) => {
     alert("Payment Succesful")
+    navigate("/home")
   };
 
   return (
