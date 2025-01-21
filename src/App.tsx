@@ -1,13 +1,18 @@
-
-import './index.css';
-import { MainPage } from './pages/MainPage';
-import { PaymentSystem } from './pages/PaymentSystem';
-import { PlanProvider } from './context/PlanContext';
+import "./index.css";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routing/Router";
+import { PlanProvider } from "./context/PlanContext";
+import { TrainingProvider } from "./context/WorkoutContext";
+import { UserProvider } from "./context/UserContex";
 
 function App() {
   return (
     <PlanProvider>
-      <MainPage />
+      <UserProvider>
+        <TrainingProvider>
+          <RouterProvider router={router} />
+        </TrainingProvider>
+      </UserProvider>
     </PlanProvider>
   );
 }

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Cardio na spalanie tłuszczu",
+    "description": "Intensywny trening kardio na spalanie tłuszczu.",
+    "typeOfTraining": "Cardio",
+    "duration": 45
+  },
+  {
+    "id": 2,
+    "name": "Trening siłowy dla początkujących",
+    "description": "Podstawowy trening siłowy dla osób zaczynających przygodę z siłownią.",
+    "typeOfTraining": "Siłowy",
+    "duration": 60
+  },
+  {
+    "id": 3,
+    "name": "Trening mobilności i rozciągania",
+    "description": "Ćwiczenia zwiększające mobilność i elastyczność.",
+    "typeOfTraining": "Mobilność",
+    "duration": 30
+  }
+]

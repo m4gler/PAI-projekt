@@ -1,109 +1,95 @@
 import { usePlan } from "../context/PlanContext";
+import { useNavigate } from "react-router-dom";
 
 export const MainPage = () => {
-const {setSelectedPlan} = usePlan();
+  const { setSelectedPlan } = usePlan();
+  const navigate = useNavigate();
 
-
-const handlePlan = (plan:string) => {
-  setSelectedPlan(plan);
-  console.log("plan: ", plan)
-}
+  const handlePlan = (plan) => {
+    setSelectedPlan(plan);
+    navigate("/register", { state: { plan } });
+  };
 
   return (
-    <div className="h-screen w-screen bg-gray-100 flex flex-col">
-      <div className="h-24 bg-black flex items-center justify-between px-10">
+    <div className="min-h-screen bg-gradient-to-b from-blue-900 to-blue-700 flex flex-col">
+      {/* Header Section */}
+      <header className="h-24 bg-gradient-to-r from-blue-800 to-blue-600 flex items-center justify-between px-8 shadow-lg">
         <div className="text-white text-4xl font-bold">
-          Sił<span className="text-yellow-400">KA</span>
+          Gym<span className="text-yellow-400">Buddy</span>
         </div>
+        <button
+          className="bg-yellow-400 text-black font-bold py-2 px-6 rounded-full hover:bg-yellow-500 transition duration-300 shadow-md"
+          onClick={() => navigate("/register")}
+        >
+          Buy Membership
+        </button>
+      </header>
 
-        <nav>
-          <ul className="flex space-x-8 text-white text-2xl">
-            <li className="hover:text-gray-400">
-              <a href="#">Nasze Kluby</a>
-            </li>
-            <li className="hover:text-gray-400">
-              <a href="#">Cennik</a>
-            </li>
-            <li className="hover:text-gray-400">
-              <a href="#">Kontakt</a>
-            </li>
-            <li className="hover:text-gray-400">
-              <a href="#">Blog</a>
-            </li>
-          </ul>
-        </nav>
-
-        <div className="flex items-center space-x-4">
-          <button className="text-white text-2xl hover:text-gray-400">Mój klub</button>
-          <button className="text-white text-2xl hover:text-gray-400">Zaloguj się</button>
-          <button className="bg-yellow-400 text-black font-bold py-3 px-6 rounded hover:bg-yellow-500">
-            Kup karnet
-          </button>
-        </div>
+      {/* Hero Section */}
+      <div className="flex flex-col justify-center items-center h-[90vh] bg-gradient-to-b from-blue-800 to-blue-600 text-white text-center">
+        <h1 className="text-7xl font-extrabold mb-8 leading-snug max-w-5xl drop-shadow-lg animate-pulse">
+          Unlock Your Full Potential with GymBuddy!
+        </h1>
+        <p className="text-2xl max-w-3xl mb-12">
+          Experience world-class facilities, expert trainers, and a community that inspires you to achieve your fitness goals.
+        </p>
+        <button onClick={() => navigate("/register")} className="bg-red-500 text-white font-bold py-4 px-12 rounded-full hover:bg-red-600 text-2xl transition duration-300 shadow-lg">
+          Get Started
+        </button>
       </div>
 
-      <div className="relative flex flex-col justify-center items-center h-[80vh]">
-        <img
-          src="https://mosir.rumia.pl/upload/images/GalleryPhoto/0a02fe45e9b89370dcaeef1f3458d0bb.jpg"
-          alt="Siłownia"
-          className="w-full h-full object-cover"
-        />
-
-        <div className="absolute text-center text-white px-4">
-          <h1 className="text-5xl font-bold mb-4">
-            Jak wytrwać w realizacji noworocznych postanowień?
-          </h1>
-          <button className="bg-red-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-red-600">
-            Sprawdź!
-          </button>
+      {/* Membership Plans Section */}
+      <section className="bg-gradient-to-r from-blue-700 to-blue-500 py-12">
+        <h2 className="text-4xl font-bold text-center text-white mb-10">Choose Your Membership</h2>
+        <div className="flex flex-wrap justify-center gap-8 px-4">
+          {[
+            { name: "Monthly Plan", price: "$19.99", description: "Access to all classes and cardio zone" },
+            { name: "3-Month Plan", price: "$49.99", description: "No fees for group classes" },
+            { name: "Annual Plan", price: "$199.99", description: "Access to sauna and free consultations" },
+          ].map((plan, index) => (
+            <div
+              key={index}
+              className="bg-white p-6 border border-gray-300 rounded-xl shadow-lg w-80 text-center hover:scale-105 transition duration-300"
+            >
+              <h3 className="text-2xl font-bold text-black mb-4">{plan.name}</h3>
+              <p className="text-gray-700 mb-4">{plan.description}</p>
+              <p className="text-3xl font-bold text-black mb-6">{plan.price}</p>
+              <button
+                onClick={() => handlePlan(`${plan.name} - ${plan.price}`)}
+                className="bg-red-500 text-white py-2 px-6 rounded-full hover:bg-red-600 transition duration-300 shadow-md"
+              >
+                Select
+              </button>
+            </div>
+          ))}
         </div>
-      </div>
+      </section>
 
-      <div className="bg-gradient-to-r from-blue-700 to-blue-600 py-10">
-        <h2 className="text-5xl font-bold text-center text-black mb-10">
-          Wybierz swój karnet
-        </h2>
-        <div className="flex justify-center space-x-8">
-          <div className="bg-white p-6 border border-gray-300 rounded-lg shadow-md w-72 text-center">
-            <h3 className="text-2xl font-bold text-black mb-4">
-              Karnet Miesięczny
-            </h3>
-            <p className="text-gray-700 mb-4">
-              Dostęp do wszystkich zajęć i strefy cardio
-            </p>
-            <p className="text-3xl font-bold text-black mb-6">99,99 zł</p>
-            <button onClick={() => handlePlan("Miesięczny - 99,99 zł")} className="bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600">
-              Wybierz
-            </button>
-          </div>
-
-          <div className="bg-white p-6 border border-gray-300 rounded-lg shadow-md w-72 text-center">
-            <h3 className="text-2xl font-bold text-black mb-4">
-              Karnet 3-Miesięczny
-            </h3>
-            <p className="text-gray-700 mb-4">
-              Bezpłatny trening personalny w pakiecie
-            </p>
-            <p className="text-3xl font-bold text-black mb-6">249,99 zł</p>
-            <button onClick={() => handlePlan("3-Miesieczny - 249,99 zł")}  className="bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600">
-              Wybierz
-            </button>
-          </div>
-
-          <div className="bg-white p-6 border border-gray-300 rounded-lg shadow-md w-72 text-center">
-            <h3 className="text-2xl font-bold text-black mb-4">
-              Karnet Roczny
-            </h3>
-            <p className="text-gray-700 mb-4">
-              Dostęp do sauny i darmowe konsultacje
-            </p>
-            <p className="text-3xl font-bold text-black mb-6">899,99 zł</p>
-            <button onClick={() => handlePlan("Roczny - 899,99 zł")} className="bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600">
-              Wybierz
-            </button>
-          </div>
+      {/* Enhanced Features Section */}
+      <section className="py-16 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500">
+        <h2 className="text-5xl font-extrabold text-center text-white mb-10">Discover the GymBuddy Advantage</h2>
+        <div className="flex flex-wrap justify-center gap-8">
+          {[
+            { title: "Tailored Programs", description: "Personalized fitness plans just for you" },
+            { title: "State-of-the-Art Equipment", description: "Train with the best machines and tools" },
+            { title: "Expert Trainers", description: "Guidance from certified professionals" },
+            { title: "Community Support", description: "Be part of a vibrant fitness community" },
+          ].map((feature, index) => (
+            <div
+              key={index}
+              className="bg-white p-8 rounded-xl shadow-lg w-80 text-center hover:shadow-xl transition duration-300"
+            >
+              <h3 className="text-3xl font-bold text-blue-900 mb-4">{feature.title}</h3>
+              <p className="text-gray-600">{feature.description}</p>
+            </div>
+          ))}
         </div>
-      </div>
+      </section>
+
+      {/* Footer Section */}
+      <footer className="h-16 bg-gradient-to-r from-blue-950 to-blue-900 flex items-center justify-center">
+        <p className="text-gray-300 text-sm">&copy; 2025 GymBuddy. All rights reserved.</p>
+      </footer>
     </div>
   );
 };
